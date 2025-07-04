@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #fffafc;
+    color: #1c1c1c;
+  }
+  
+  .upload-box {
+    max-width: 880px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .upload-box h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  input[type="file"] {
+    padding: 0.8rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    background: #f9f9f9;
+    width: 100%;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  .preview img {
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .analyze-btn,
+  .style-buttons button,
+  .copy-btn,
+  .result-box button {
+    background-color: #f43f5e;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 999px;
+    margin: 0.5rem 0.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .analyze-btn:hover,
+  .style-buttons button:hover,
+  .copy-btn:hover {
+    background-color: #e11d48;
+  }
+  
+  .style-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0 1rem;
+  }
+  
+  .style-buttons .active {
+    background-color: #e11d48;
+  }
+  
+  .result-box {
+    margin-top: 2rem;
+    background: #fef2f4;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #fce7ea;
+  }
+  
+  .result-box h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .result-box pre {
+    font-size: 1rem;
+    font-family: 'Inter', Arial, sans-serif;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+  
+  .copy-message {
+    color: #16a34a;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  .example-image h4 {
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .example-image img {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid #e5e5e5;
+    margin-top: 0.5rem;
+  }
+  .speech-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .speech-buttons button {
+    background-color: #fef2f4;
+    color: #e11d48;
+    border: 1px solid #e11d48;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .speech-buttons button:hover {
+    background-color: #e11d48;
+    color: #fff;
+  }
+    
