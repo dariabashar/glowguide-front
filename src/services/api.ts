@@ -17,7 +17,7 @@ export const login = async (username: string, password: string): Promise<{ acces
     },
   })
 
-  return res.data
+  return res.data as { access_token: string }
 }
 
 // Регистрация пользователя
@@ -27,7 +27,7 @@ export const register = async (username: string, password: string): Promise<{ ac
     password,
   })
 
-  return res.data
+  return res.data as { access_token: string }
 }
 
 // Генерация макияжа по изображению и промпту
@@ -52,5 +52,11 @@ export const generateMakeup = async (
     },
   })
 
-  return res.data
+  return res.data as {
+    filename: string
+    saved_as: string
+    face_data: any
+    recommendation: string
+    video_url: string
+  }
 }

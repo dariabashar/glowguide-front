@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { generateMakeup } from '../services/api';
 
 const MakeupGenerator = () => {
-  const navigate = useNavigate();
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -77,26 +75,6 @@ const MakeupGenerator = () => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const generateSuggestions = () => {
-    console.log('Generating suggestions...');
-    setIsAnalyzing(true);
-    setSuggestions([]);
-    setSelectedStyle(null);
-    setShowVideoRecommendation(false);
-    setSelectedVideo(null);
-    
-    setTimeout(() => {
-      console.log('Analysis complete, setting suggestions...');
-      setSuggestions([
-        "Your skin tone is perfect for warm tones",
-        "Your face shape harmonizes with classic makeup techniques",
-        "You can highlight your eyes with golden and brown tones",
-        "Medium-full lips are ideal for various techniques"
-      ]);
-      setIsAnalyzing(false);
-    }, 2000);
   };
 
   const handleStyleSelect = (styleId: string) => {
