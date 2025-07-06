@@ -60,3 +60,16 @@ export const generateMakeup = async (
     video_url: string
   }
 }
+// ✅ ВНЕ функции, отдельный экспорт
+export const tryOnMakeup = async (
+  formData: FormData,
+  token: string
+): Promise<{ video_url: string }> => {
+  const res = await API.post('/try-on/', formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  return res.data as { video_url: string }
+}

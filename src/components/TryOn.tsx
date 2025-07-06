@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './TryOn.css'
+import { tryOnMakeup } from '../services/api'
 
 export default function TryOn() {
   const [userPhoto, setUserPhoto] = useState<File | null>(null)
@@ -10,6 +11,13 @@ export default function TryOn() {
 
   const handleGenerate = async () => {
     if (!userPhoto || !makeupRef) return
+
+    const token = localStorage.getItem('token')
+    if (!token) {
+      setError('You are not logged in.')
+      return
+    }
+
     setLoading(true)
     setError(null)
 
@@ -18,15 +26,8 @@ export default function TryOn() {
       formData.append('user_photo', userPhoto)
       formData.append('makeup_reference', makeupRef)
 
-      const res = await fetch('http://20.238.25.60:8000/try-on', {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (!res.ok) throw new Error('Server error')
-
-      const data = await res.json()
-      setVideoUrl(data.video_url)
+      const result = await tryOnMakeup(formData, token)
+      setVideoUrl(result.video_url)
     } catch (err) {
       console.error('Generation error:', err)
       setError('Could not generate video. Please try again later.')
@@ -49,15 +50,24 @@ export default function TryOn() {
       <div className="tryon-sparkles" aria-hidden="true"></div>
       <section className="tryon-hero">
         <h1 className="tryon-title-glow">GlowGuide Try-On</h1>
-        <p className="tryon-subtitle">Experience AI-powered virtual makeup magic. Upload your photo, choose a makeup look, and see yourself transformed in seconds.</p>
+        <p className="tryon-subtitle">
+          Experience AI-powered virtual makeup magic. Upload your photo, choose a makeup look,
+          and see yourself transformed in seconds.
+        </p>
       </section>
       <div className="tryon-upload-row">
         <div className="tryon-card glass">
           <label className="tryon-label" htmlFor="user-photo">Your Photo</label><br />
-          <input id="user-photo" aria-label="Upload your photo" type="file" accept="image/*" onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file && file.type.startsWith('image/')) setUserPhoto(file)
-          }} />
+          <input
+            id="user-photo"
+            aria-label="Upload your photo"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0]
+              if (file && file.type.startsWith('image/')) setUserPhoto(file)
+            }}
+          />
           {userPhoto && (
             <img
               src={URL.createObjectURL(userPhoto)}
@@ -68,10 +78,16 @@ export default function TryOn() {
         </div>
         <div className="tryon-card glass">
           <label className="tryon-label" htmlFor="makeup-ref">Makeup Reference</label><br />
-          <input id="makeup-ref" aria-label="Upload makeup reference" type="file" accept="image/*" onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file && file.type.startsWith('image/')) setMakeupRef(file)
-          }} />
+          <input
+            id="makeup-ref"
+            aria-label="Upload makeup reference"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0]
+              if (file && file.type.startsWith('image/')) setMakeupRef(file)
+            }}
+          />
           {makeupRef && (
             <img
               src={URL.createObjectURL(makeupRef)}
