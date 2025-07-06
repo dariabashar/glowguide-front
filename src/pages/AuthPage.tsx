@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { login, register } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc'
+import { track } from '../utils/analytics'
+
 
 const features = [
   { text: 'AI-powered analysis of your unique features' },
@@ -41,6 +43,7 @@ export default function AuthPage() {
     try {
       const data: { access_token: string } = await login(email, password);
       localStorage.setItem('token', data.access_token);
+      track('Login', 'Auth') 
       navigate('/home');
     } catch {
       setError('Login failed');
@@ -60,6 +63,7 @@ export default function AuthPage() {
     }
     try {
       await register(email, password);
+      track('Register', 'Auth')
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);

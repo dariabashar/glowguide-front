@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './TryOn.css'
 import { tryOnMakeup } from '../services/api'
+import { track } from '../utils/analytics'
+
 
 export default function TryOn() {
   const [userPhoto, setUserPhoto] = useState<File | null>(null)
@@ -17,6 +19,8 @@ export default function TryOn() {
       setError('You are not logged in.')
       return
     }
+
+    track('Try On Makeup', 'TryOn')
 
     setLoading(true)
     setError(null)

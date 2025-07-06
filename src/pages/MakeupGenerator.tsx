@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { generateMakeup } from '../services/api';
+import { track } from '../utils/analytics';
 
 const MakeupGenerator = () => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -57,6 +58,8 @@ const MakeupGenerator = () => {
             setLoadingVideo(false);
             return;
           }
+
+          track('Generate Makeup', 'Makeup')
           // prompt можно сделать динамическим, пока фиксируем
           const backendResult = await generateMakeup(file, 'natural glowing makeup', token);
           setGeneratedVideoUrl(backendResult.video_url);
