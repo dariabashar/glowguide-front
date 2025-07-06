@@ -18,7 +18,7 @@ export default function TryOn() {
       formData.append('user_photo', userPhoto)
       formData.append('makeup_reference', makeupRef)
 
-      const res = await fetch('http://localhost:8000/try-on', {
+      const res = await fetch('http://20.238.25.60:8000/try-on', {
         method: 'POST',
         body: formData,
       })
