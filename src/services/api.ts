@@ -21,14 +21,27 @@ export const login = async (username: string, password: string): Promise<{ acces
 }
 
 // Регистрация пользователя
-export const register = async (username: string, password: string): Promise<{ access_token: string }> => {
-  const res = await API.post('/register', {
-    username,
-    password,
-  })
-
-  return res.data as { access_token: string }
+export const register = async (
+  email: string,
+  password: string
+): Promise<{ access_token: string }> => {
+  const res = await API.post<{ access_token: string }>(
+    '/register',
+    {
+      username: email,
+      password: password,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+  return res.data
 }
+
+
+
 
 // Генерация макияжа по изображению и промпту
 export const generateMakeup = async (
