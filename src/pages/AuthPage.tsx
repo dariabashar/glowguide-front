@@ -24,7 +24,7 @@ export default function AuthPage() {
   const navigate = useNavigate();
   const handleGoogleLogin = () => {
   const clientId = "197273667925-2udbubul9pd2j4qfo4cj05rk3sodn4qe.apps.googleusercontent.com";
-  const redirectUri = "http://localhost:8000/auth/callback";
+  const redirectUri = "https://glowguide.live/auth/callback";
   const scope = "openid email profile";
 
   const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
