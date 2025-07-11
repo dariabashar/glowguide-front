@@ -38,9 +38,9 @@ const AnalyticsWrapper: React.FC = () => {
         <Route path="/preview" element={<MakeupLivePreview />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/makeup-generator" element={<MakeupGenerator />} />
-        <Route path="/login" element={<GoogleLoginButton />} />
+        {/* <Route path="/login" element={<GoogleLoginButton />} />
         <Route path="/auth/google/callback" element={<AuthCallback />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </div>
