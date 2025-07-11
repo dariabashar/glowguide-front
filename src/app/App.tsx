@@ -8,11 +8,12 @@ import Navigation from "../components/Navigation"
 import MakeupLivePreview from "../components/MakeupLivePreview"
 import AuthPage from "../pages/AuthPage"
 import MakeupGenerator from "../pages/MakeupGenerator"
-import { GoogleLoginButton } from '../components/GoogleloginButton'
-import { AuthCallback } from '../pages/AuthCallback';
-import { Dashboard } from '../pages/Dashboard';
+// import { GoogleLoginButton } from '../components/GoogleloginButton'
+// import { AuthCallback } from '../pages/AuthCallback';
+// import { Dashboard } from '../pages/Dashboard';
 import { initGA, trackPageView } from "../utils/analytics"
-import { Analytics }    from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
+
 
 const AnalyticsWrapper: React.FC = () => {
   const location = useLocation();
