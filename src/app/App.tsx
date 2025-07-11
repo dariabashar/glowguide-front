@@ -8,20 +8,22 @@ import Navigation from "../components/Navigation"
 import MakeupLivePreview from "../components/MakeupLivePreview"
 import AuthPage from "../pages/AuthPage"
 import MakeupGenerator from "../pages/MakeupGenerator"
-
+import { GoogleLoginButton } from '../components/GoogleloginButton'
+import { AuthCallback } from '../pages/AuthCallback';
+import { Dashboard } from '../pages/Dashboard';
 import { initGA, trackPageView } from "../utils/analytics"
+import { Analytics }    from "@vercel/analytics/next";
 
-// Обёртка для маршрутов с отслеживанием просмотров страниц
-const AnalyticsWrapper = () => {
-  const location = useLocation()
-
-  useEffect(() => {
-    initGA()
-  }, [])
+const AnalyticsWrapper: React.FC = () => {
+  const location = useLocation();
 
   useEffect(() => {
-    trackPageView(location.pathname)
-  }, [location])
+    initGA();
+  }, []);
+
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
 
   return (
     <div className="min-h-screen">
@@ -35,16 +37,20 @@ const AnalyticsWrapper = () => {
         <Route path="/preview" element={<MakeupLivePreview />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/makeup-generator" element={<MakeupGenerator />} />
+        <Route path="/login" element={<GoogleLoginButton />} />
+        <Route path="/auth/google/callback" element={<AuthCallback />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-const App = () => (
+const App: React.FC = () => (
   <BrowserRouter>
     <AnalyticsWrapper />
+    <Analytics />
   </BrowserRouter>
-)
+);
 
-export default App
+export default App;
